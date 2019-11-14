@@ -1,16 +1,18 @@
-const express = require("express");
+const express = require('express');
 const app = express();
 
-const bodyParser = require("body-parser");
-const cors = require("cors");
-const data = require("./data");
+const bodyParser = require('body-parser');
+const cors = require('cors');
+const data = require('./data');
 
 app.use(cors());
 app.use(bodyParser.json());
-app.use(express.static("public"));
+app.use(express.static('public'));
 
-app.get("/", (req, res) => {
-  res.status(200).send(data);
+app.post('/tasks', (req, res) => {
+  const newTask = req.body;
+  data.push(newTask);
+  res.status(201).send('created');
 });
 
 module.exports = app;

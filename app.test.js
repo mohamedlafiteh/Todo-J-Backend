@@ -1,12 +1,12 @@
 const app = require('./app');
 const request = require('supertest');
 
-describe('Test End Point Results', () => {
-  test('Response to Get end point', () => {
+describe('Test POST end point results', () => {
+  test('Response to the post end point', () => {
     return request(app)
-      .get('/')
+      .post('/tasks')
       .then(response => {
-        expect(response.statusCode).toBe(200);
+        expect(response.status).toBe(201);
       });
   });
 });
