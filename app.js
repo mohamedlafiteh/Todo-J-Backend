@@ -9,8 +9,8 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use(express.static('public'));
 
-app.get('/', (req, res) => {
-  res.status(200).send('Hello world');
+app.get('/tasks', (req, res) => {
+  res.status(200).send(data);
 });
 
 module.exports = app;
