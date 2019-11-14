@@ -31,3 +31,13 @@ describe('Test End Point data response', () => {
       });
   });
 });
+
+describe('Test update task by id End Point Results', () => {
+  test('Response to put end point', () => {
+    return request(app)
+      .put('/tasks/:id')
+      .then(response => {
+        expect(response.statusCode).toBe(200);
+      });
+  });
+});
