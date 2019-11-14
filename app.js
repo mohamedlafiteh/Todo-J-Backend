@@ -1,16 +1,16 @@
-const express = require("express");
+const express = require('express');
 const app = express();
 
-const bodyParser = require("body-parser");
-const cors = require("cors");
-const data = require("./data");
+const bodyParser = require('body-parser');
+const cors = require('cors');
+const data = require('./data');
 
 app.use(cors());
 app.use(bodyParser.json());
-app.use(express.static("public"));
+app.use(express.static('public'));
 
-app.get("/", (req, res) => {
-  res.status(200).send(data);
+app.get('/', (req, res) => {
+  res.status(200).send('Hello world');
 });
 
 module.exports = app;
