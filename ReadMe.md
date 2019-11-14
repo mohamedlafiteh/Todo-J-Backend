@@ -1,4 +1,4 @@
-- Todo plan List
+- Todo Plan List
 
 1- Create new folder, initialise git repository, installed packages and installed all the dependencies, Express, nodemon, cors,body-parser and started building the server to run on port 3000
 
