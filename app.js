@@ -9,7 +9,7 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use(express.static('public'));
 
-app.get('/todos', (req, res) => {
+app.get('/tasks', (req, res) => {
   res.status(200).send(data);
 });
 
