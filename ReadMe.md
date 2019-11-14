@@ -1,9 +1,18 @@
 - Todo plan List
 
-1- Create new folder, initialise git repository, installed packages and installed all the dependencies, Express, nodemon, cors,body-parser and started building the server to run on port 3000
+Description -
 
-2- Create new branch and create the first jest test and handler function to Get data-Install Jest and supertest
+backend for a Todo application for the endpoints below:
 
-3- Create get end point in app js for getting all the items.
+GET,POST,DELETE,PUT and PATCH.
 
-4- ESLint - airbnb style guide- followed tutorial to get it installed on your system.
+-Get end point returns all the tasks information.
+-Post end point add a new task to the list.
+-Delete end point deleting tasks by id.
+-Put end point updating tasks buy id.
+
+1- The project is hosted on Github.
+
+2- a new branch for each endpoint, with jest test and the handler function.
+
+4- ESLint - airbnb style guide- installed on your system.
