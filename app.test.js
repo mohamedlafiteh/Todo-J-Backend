@@ -39,6 +39,7 @@ describe('Test update task by id End Point Results', () => {
       .put('/tasks/:id')
       .then(response => {
         expect(response.statusCode).toBe(200);
+        expect(response.text).toEqual('updated');
       });
   });
 });
@@ -48,6 +49,7 @@ describe('Test DELETE End Point Results', () => {
       .delete('/tasks/:id')
       .then(response => {
         expect(response.statusCode).toBe(200);
+        expect(response.text).toEqual('deleted');
       });
   });
 });
