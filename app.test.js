@@ -1,10 +1,10 @@
-const app = require("./app");
-const request = require("supertest");
+const app = require('./app');
+const request = require('supertest');
 
-describe("Test End Point Results", () => {
-  test("Response to Get end point", () => {
+describe('Test End Point Results', () => {
+  test('Response to Get end point', () => {
     return request(app)
-      .get("/")
+      .get('/')
       .then(response => {
         expect(response.statusCode).toBe(200);
       });

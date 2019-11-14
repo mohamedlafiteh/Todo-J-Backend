@@ -1,12 +1,12 @@
 const data = [
   {
     id: 1,
-    title: "Buy groceries",
+    title: 'Buy groceries',
     completed: false
   },
   {
     id: 2,
-    title: "Do laundry",
+    title: 'Do laundry',
     completed: true
   }
 ];
