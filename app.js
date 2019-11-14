@@ -18,6 +18,15 @@ app.post('/tasks', (req, res) => {
 app.get('/tasks', (req, res) => {
   res.status(200).send(data);
 });
+app.get('/tasks/:id', (req, res) => {
+  const taskId = req.params.id;
+
+  const filterTasks = data.find(data => {
+    return data.id == taskId;
+  });
+
+  res.status(200).send(filterTasks);
+});
 
 app.put('/tasks/:id', (req, res) => {
   const taskId = req.params.id;
