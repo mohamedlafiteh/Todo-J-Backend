@@ -30,5 +30,14 @@ app.put('/tasks/:id', (req, res) => {
   data[taskIndex] = { ...data[taskIndex], ...req.body };
   res.status(200).send('updated');
 });
+app.delete('/tasks/:id', (req, res) => {
+  const taskId = req.params.id;
+  const task = data.find(data => {
+    return data.id == taskId;
+  });
+
+  data.splice(data.indexOf(task), 1);
+  res.status(200).send('deleted');
+});
 
 module.exports = app;
