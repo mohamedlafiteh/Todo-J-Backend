@@ -1,7 +1,7 @@
 const app = require("./app");
 const request = require("supertest");
 
-describe("Test End Point", () => {
+describe("Test End Point Results", () => {
   test("Response to Get end point", () => {
     return request(app)
       .get("/")
