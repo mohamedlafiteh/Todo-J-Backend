@@ -1,12 +1,6 @@
-const express = require("express");
-const app = express();
-const bodyParser = require("body-parser");
-const cors = require("cors");
+const app = require("./app");
 
-app.use(cors());
-app.use(bodyParser.json());
-app.use(express.static("public"));
-
+const PORT = 3000;
 app.listen(3000, () => {
-  console.log("This server running on port 3000");
+  console.log(`This server running on port ${PORT}`);
 });
