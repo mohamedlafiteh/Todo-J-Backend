@@ -25,7 +25,6 @@ app.put('/tasks/:id', (req, res) => {
   const taskIndex = data.findIndex(data => {
     return data.id == taskId;
   });
-  console.log(taskIndex);
 
   data[taskIndex] = { ...data[taskIndex], ...req.body };
   res.status(200).send('updated');

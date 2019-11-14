@@ -2,18 +2,19 @@ const app = require('./app');
 const request = require('supertest');
 const data = require('./data');
 
-describe('Test post End Point status', () => {
-  test('Response to Get end point', () => {
+describe('Test POST End Point status', () => {
+  test('Response to POST end point', () => {
     return request(app)
       .post('/tasks')
       .then(response => {
         expect(response.status).toBe(201);
+        expect(response.text).toEqual('created');
       });
   });
 });
 
-describe('Test get End Point status', () => {
-  test('Response to Get end point', () => {
+describe('Test GET End Point status', () => {
+  test('Response to GET end point', () => {
     return request(app)
       .get('/tasks')
       .then(response => {
@@ -22,8 +23,8 @@ describe('Test get End Point status', () => {
   });
 });
 
-describe('Test End Point data response', () => {
-  test('Response to Get end point', () => {
+describe('Test GET end point data response', () => {
+  test('Response to GET end point', () => {
     return request(app)
       .get('/tasks')
       .then(response => {
@@ -33,7 +34,7 @@ describe('Test End Point data response', () => {
 });
 
 describe('Test update task by id End Point Results', () => {
-  test('Response to put end point', () => {
+  test('Response to PUT end point', () => {
     return request(app)
       .put('/tasks/:id')
       .then(response => {
