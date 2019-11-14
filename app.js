@@ -15,4 +15,8 @@ app.post('/tasks', (req, res) => {
   res.status(201).send('created');
 });
 
+app.get('/tasks', (req, res) => {
+  res.status(200).send(data);
+});
+
 module.exports = app;
