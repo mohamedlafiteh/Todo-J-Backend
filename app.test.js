@@ -2,12 +2,22 @@ const app = require('./app');
 const request = require('supertest');
 const data = require('./data');
 
-describe('Test End Point status', () => {
+describe('Test post End Point status', () => {
+  test('Response to Get end point', () => {
+    return request(app)
+      .post('/tasks')
+      .then(response => {
+        expect(response.status).toBe(201);
+      });
+  });
+});
+
+describe('Test get End Point status', () => {
   test('Response to Get end point', () => {
     return request(app)
       .get('/tasks')
       .then(response => {
-        expect(response.statusCode).toBe(200);
+        expect(response.status).toBe(200);
       });
   });
 });
