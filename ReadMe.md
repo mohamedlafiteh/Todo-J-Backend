@@ -4,7 +4,7 @@ Description -
 
 backend for a Todo application for the endpoints below:
 
-GET,POST,DELETE,PUT and PATCH.
+Get,Post,Delete,Put and Patch.
 
 -Get end point returns all the tasks information.
 -Post end point add a new task to the list.
