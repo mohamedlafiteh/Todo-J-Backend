@@ -41,3 +41,12 @@ describe('Test update task by id End Point Results', () => {
       });
   });
 });
+describe('Test DELETE End Point Results', () => {
+  test('Response to DELETE end point', () => {
+    return request(app)
+      .delete('/tasks/:id')
+      .then(response => {
+        expect(response.statusCode).toBe(200);
+      });
+  });
+});
