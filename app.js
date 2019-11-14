@@ -45,7 +45,7 @@ app.delete('/tasks/:id', (req, res) => {
   });
 
   data.splice(data.indexOf(task), 1);
-  res.status(200).send('deleted');
+  res.status(204).send();
 });
 
 module.exports = app;
