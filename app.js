@@ -63,6 +63,17 @@ app.put('/tasks/:id', (req, res) => {
   }
 });
 
+app.patch('/tasks/:id', (req, res) => {
+  const taskId = req.params.id;
+
+  const taskIndex = data.findIndex(data => {
+    return data.id == taskId;
+  });
+
+  data[taskIndex] = { ...data[taskIndex], ...req.body };
+  res.status(200).send('updated');
+});
+
 app.delete('/tasks/:id', (req, res) => {
   const taskId = req.params.id;
   const task = data.find(data => {
