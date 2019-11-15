@@ -50,6 +50,7 @@ describe('Test DELETE End Point Results', () => {
       .delete('/tasks/:id')
       .then(response => {
         expect(response.statusCode).toBe(204);
+        expect(response.text).toEqual('');
       });
   });
 });
