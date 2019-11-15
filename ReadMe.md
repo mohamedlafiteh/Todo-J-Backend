@@ -11,6 +11,7 @@
 -Post /tasks creates a new task to the list.
 -Delete /tasks/:id deletes tasks by id.
 -Put /tasks/:id updates tasks buy id.
+-Patch /tasks/:id Allows a partial update the task.
 ```
 
 - The project is hosted on Github.
