@@ -10,8 +10,20 @@ app.use(bodyParser.json());
 
 app.post('/tasks', (req, res) => {
   const newTask = req.body;
-  data.push(newTask);
-  res.status(201).send('created');
+  const id = data.length + 1;
+
+  const task = {
+    id: id,
+    title: newTask.title,
+    completed: false
+  };
+
+  if ('title' in task) {
+    data.push(newTask);
+    res.status(201).send('created');
+  } else {
+    res.status(400).send('there is error in inserting data');
+  }
 });
 
 app.get('/tasks', (req, res) => {
@@ -30,13 +42,25 @@ app.get('/tasks/:id', (req, res) => {
 
 app.put('/tasks/:id', (req, res) => {
   const taskId = req.params.id;
+  const task = req.body;
 
-  const taskIndex = data.findIndex(data => {
-    return data.id == taskId;
-  });
+  const completed = task.completed;
+  const updated = {
+    id: taskId,
+    title: task.title,
+    completed: completed
+  };
+  console.log(updated.title);
+  if ('undefined' !== typeof updated['title'] && typeof (updated.completed == 'boolean')) {
+    const taskIndex = data.findIndex(data => {
+      return data.id == taskId;
+    });
 
-  data[taskIndex] = { ...data[taskIndex], ...req.body };
-  res.status(200).send('updated');
+    data[taskIndex] = { ...data[taskIndex], ...req.body };
+    res.status(200).send('updated');
+  } else {
+    res.status(400).send('There is error in updating data');
+  }
 });
 
 app.delete('/tasks/:id', (req, res) => {
