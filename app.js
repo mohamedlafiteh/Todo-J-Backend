@@ -50,7 +50,7 @@ app.put('/tasks/:id', (req, res) => {
     title: task.title,
     completed: completed
   };
-  console.log(updated.title);
+
   if ('undefined' !== typeof updated['title'] && typeof (updated.completed == 'boolean')) {
     const taskIndex = data.findIndex(data => {
       return data.id == taskId;
