@@ -64,3 +64,14 @@ describe('Test GET task by id End Point Results', () => {
       });
   });
 });
+
+describe('Test PATCH task by id End Point Results', () => {
+  test('Response to PATCH:id end point', () => {
+    return request(app)
+      .patch('/tasks/:id')
+      .then(response => {
+        expect(response.statusCode).toBe(200);
+        expect(response.text).toEqual('task updated');
+      });
+  });
+});

@@ -71,7 +71,7 @@ app.patch('/tasks/:id', (req, res) => {
   });
 
   data[taskIndex] = { ...data[taskIndex], ...req.body };
-  res.status(200).send('updated');
+  res.status(200).send('task updated');
 });
 
 app.delete('/tasks/:id', (req, res) => {
