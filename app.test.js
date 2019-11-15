@@ -10,6 +10,7 @@ describe('Test POST End Point status', () => {
         expect(response.status).not.toBe(201);
       });
   });
+
   test('Test request should return 201 Response to POST end point', () => {
     return request(app)
       .post('/tasks')
@@ -21,17 +22,7 @@ describe('Test POST End Point status', () => {
   });
 });
 
-describe('Test GET End Point status', () => {
-  test('Test request should return 200 Response to GET end point', () => {
-    return request(app)
-      .get('/tasks')
-      .then(response => {
-        expect(response.status).toBe(200);
-      });
-  });
-});
-
-describe('Test GET end point data response', () => {
+describe('Test GET end point data response and status', () => {
   test('Test request should return the Data status 200 Response to GET end point', () => {
     return request(app)
       .get('/tasks')
@@ -50,6 +41,7 @@ describe('Test PUT end point status', () => {
         expect(response.status).not.toBe(200);
       });
   });
+
   test('Test request should return 200 Response to PUT end point', () => {
     return request(app)
       .put('/tasks/:id')
