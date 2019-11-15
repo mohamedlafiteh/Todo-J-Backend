@@ -3,9 +3,17 @@ const request = require('supertest');
 const data = require('./data');
 
 describe('Test POST End Point status', () => {
-  test('Response to POST end point', () => {
+  test('No data should return an error', () => {
     return request(app)
       .post('/tasks')
+      .then(response => {
+        expect(response.status).not.toBe(201);
+      });
+  });
+  test('Test request should return 201 Response to POST end point', () => {
+    return request(app)
+      .post('/tasks')
+      .send({ title: 'passing test' })
       .then(response => {
         expect(response.status).toBe(201);
         expect(response.text).toEqual('created');
@@ -14,7 +22,7 @@ describe('Test POST End Point status', () => {
 });
 
 describe('Test GET End Point status', () => {
-  test('Response to GET end point', () => {
+  test('Test request should return 200 Response to GET end point', () => {
     return request(app)
       .get('/tasks')
       .then(response => {
@@ -24,28 +32,37 @@ describe('Test GET End Point status', () => {
 });
 
 describe('Test GET end point data response', () => {
-  test('Response to GET end point', () => {
+  test('Test request should return the Data status 200 Response to GET end point', () => {
     return request(app)
       .get('/tasks')
       .then(response => {
+        expect(response.status).toBe(200);
         expect(JSON.parse(response.text)).toEqual(data);
       });
   });
 });
 
-describe('Test update task by id End Point Results', () => {
-  test('Response to PUT end point', () => {
+describe('Test PUT end point status', () => {
+  test('No data should return an error', () => {
     return request(app)
       .put('/tasks/:id')
       .then(response => {
-        expect(response.statusCode).toBe(200);
+        expect(response.status).not.toBe(200);
+      });
+  });
+  test('Test request should return 200 Response to PUT end point', () => {
+    return request(app)
+      .put('/tasks/:id')
+      .send({ title: 'passing test', completed: false })
+      .then(response => {
+        expect(response.status).toBe(200);
         expect(response.text).toEqual('updated');
       });
   });
 });
 
-describe('Test DELETE End Point Results', () => {
-  test('Response to DELETE end point', () => {
+describe('Test DELETE end point status', () => {
+  test('Test request should return 204 Response to DELETE end point', () => {
     return request(app)
       .delete('/tasks/:id')
       .then(response => {
@@ -55,8 +72,8 @@ describe('Test DELETE End Point Results', () => {
   });
 });
 
-describe('Test GET task by id End Point Results', () => {
-  test('Response to Get:id end point', () => {
+describe('Test GET task by id End Point status', () => {
+  test('Test request should return 200 Response to GET end point ', () => {
     return request(app)
       .get('/tasks/:id')
       .then(response => {
@@ -65,8 +82,8 @@ describe('Test GET task by id End Point Results', () => {
   });
 });
 
-describe('Test PATCH task by id End Point Results', () => {
-  test('Response to PATCH:id end point', () => {
+describe('Test PATCH  update task by id End Point status and text', () => {
+  test('Test request should return 200 Response to PATCH end point', () => {
     return request(app)
       .patch('/tasks/:id')
       .then(response => {
