@@ -3,87 +3,89 @@ const app = express();
 
 const bodyParser = require('body-parser');
 const cors = require('cors');
-const data = require('./data');
 
 app.use(cors());
 app.use(bodyParser.json());
 
+const PORT = 3005;
+
+app.listen(PORT, () => {
+  console.log(`This server running on port ${PORT}`);
+});
+
+const {
+  createTask,
+  getTask,
+  deleteTask,
+  updateTask,
+  getAllTasks,
+  updateTaskPartially
+} = require('./task-service');
+
 app.post('/tasks', (req, res) => {
-  const newTask = req.body;
-  const id = data.length + 1;
-
-  const task = {
-    id: id,
-    title: newTask.title,
-    completed: false
-  };
-
-  console.log(task);
-
-  if ('undefined' !== typeof task['title'] && task.title.length > 0) {
-    data.push(newTask);
+  const title = req.body.title;
+  try {
+    createTask(title);
     res.status(201).send('created');
-  } else {
-    res.status(400).send('there is error in inserting data');
+  } catch (error) {
+    res.status(400).send(error);
   }
 });
 
-app.get('/tasks', (req, res) => {
-  res.status(200).send(data);
-});
-
-app.get('/tasks/:id', (req, res) => {
-  const taskId = req.params.id;
-
-  const filterTasks = data.find(data => {
-    return data.id == taskId;
-  });
-
-  res.status(200).send(filterTasks);
-});
-
 app.put('/tasks/:id', (req, res) => {
-  const taskId = req.params.id;
-  const task = req.body;
+  const id = Number(req.params.id);
 
-  const completed = task.completed;
-  const updated = {
-    id: taskId,
-    title: task.title,
-    completed: completed
-  };
-
-  if ('undefined' !== typeof updated['title'] && typeof (updated.completed == 'boolean')) {
-    const taskIndex = data.findIndex(data => {
-      return data.id == taskId;
-    });
-
-    data[taskIndex] = { ...data[taskIndex], ...req.body };
+  const title = req.body.title;
+  const completed = req.body.completed;
+  try {
+    updateTask(id, title, completed);
     res.status(200).send('updated');
-  } else {
-    res.status(400).send('There is error in updating data');
+  } catch (error) {
+    res.status(400).send(error);
   }
 });
 
 app.patch('/tasks/:id', (req, res) => {
-  const taskId = req.params.id;
+  const id = Number(req.params.id);
+  const title = req.body.title;
+  const completed = req.body.completed;
 
-  const taskIndex = data.findIndex(data => {
-    return data.id == taskId;
-  });
-
-  data[taskIndex] = { ...data[taskIndex], ...req.body };
-  res.status(200).send('task updated');
+  try {
+    updateTaskPartially(id, title, completed);
+    res.status(200).send('Task updated');
+  } catch (error) {
+    res.status(400).send(error);
+  }
 });
 
 app.delete('/tasks/:id', (req, res) => {
-  const taskId = req.params.id;
-  const task = data.find(data => {
-    return data.id == taskId;
-  });
+  const id = Number(req.params.id);
 
-  data.splice(data.indexOf(task), 1);
-  res.status(204).send();
+  try {
+    deleteTask(id);
+    res.status(204).send();
+  } catch (error) {
+    res.status(400).send(error);
+  }
+});
+app.get('/tasks/:id', (req, res) => {
+  try {
+    const task = getTask(req.params.id);
+
+    res.status(200).send(task);
+  } catch (error) {
+    res.status(400).send(error);
+  }
+});
+
+app.get('/tasks', (req, res) => {
+  try {
+    const tasks = getAllTasks();
+
+    res.status(200).send(tasks);
+  } catch (error) {
+    res.status(400).send(error);
+  }
 });
 
 module.exports = app;
