@@ -33,7 +33,8 @@ app.post('/tasks', (req, res) => {
 });
 
 app.put('/tasks/:id', (req, res) => {
-  const id = req.params.id;
+  const id = Number(req.params.id);
+
   const title = req.body.title;
   const completed = req.body.completed;
   try {
@@ -45,10 +46,12 @@ app.put('/tasks/:id', (req, res) => {
 });
 
 app.patch('/tasks/:id', (req, res) => {
-  const id = req.params.id;
+  const id = Number(req.params.id);
+  const title = req.body.title;
+  const completed = req.body.completed;
 
   try {
-    updateTaskPartially(id);
+    updateTaskPartially(id, title, completed);
     res.status(200).send('Task updated');
   } catch (error) {
     res.status(400).send(error);
@@ -56,8 +59,10 @@ app.patch('/tasks/:id', (req, res) => {
 });
 
 app.delete('/tasks/:id', (req, res) => {
+  const id = Number(req.params.id);
+
   try {
-    deleteTask(req.params.id);
+    deleteTask(id);
     res.status(204).send();
   } catch (error) {
     res.status(400).send(error);
@@ -66,6 +71,7 @@ app.delete('/tasks/:id', (req, res) => {
 app.get('/tasks/:id', (req, res) => {
   try {
     const task = getTask(req.params.id);
+
     res.status(200).send(task);
   } catch (error) {
     res.status(400).send(error);
@@ -75,6 +81,7 @@ app.get('/tasks/:id', (req, res) => {
 app.get('/tasks', (req, res) => {
   try {
     const tasks = getAllTasks();
+
     res.status(200).send(tasks);
   } catch (error) {
     res.status(400).send(error);
