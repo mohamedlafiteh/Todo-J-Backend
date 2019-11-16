@@ -69,8 +69,9 @@ app.delete('/tasks/:id', (req, res) => {
   }
 });
 app.get('/tasks/:id', (req, res) => {
+  const id = Number(req.params.id);
   try {
-    const task = getTask(req.params.id);
+    const task = getTask(id);
 
     res.status(200).send(task);
   } catch (error) {
