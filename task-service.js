@@ -5,7 +5,7 @@ const createTask = title => {
     const newTask = { id: data.length + 1, title: title, completed: false };
     data.push(newTask);
   } else {
-    throw 'Title is required';
+    throw new Error('Title is required');
   }
 };
 
@@ -27,7 +27,7 @@ const updateTask = (id, title, completed) => {
       data.splice(taskIndex, 1, { ...data[taskIndex], ...updated });
     }
   } else {
-    throw 'There is error in updating data';
+    throw new Error('There is error in updating data');
   }
 };
 
@@ -37,7 +37,7 @@ const deleteTask = id => {
 
     data.splice(task, 1);
   } else {
-    throw 'id is required';
+    throw new Error('id is required');
   }
 };
 
@@ -59,7 +59,7 @@ const updateTaskPartially = (id, title, completed) => {
 
     data[taskIndex] = { ...data[taskIndex], ...updated };
   } else {
-    throw 'There is error in updating task';
+    throw new Error('There is error in updating task');
   }
 };
 
