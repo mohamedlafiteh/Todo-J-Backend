@@ -18,6 +18,8 @@ app.post('/tasks', (req, res) => {
     completed: false
   };
 
+  console.log(task);
+
   if ('undefined' !== typeof task['title'] && task.title.length > 0) {
     data.push(newTask);
     res.status(201).send('created');
