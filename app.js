@@ -1,6 +1,8 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
+const data = require('./data');
+const updateTask = require('./src/updateTask/updateTask');
 
 const app = express();
 
@@ -18,16 +20,15 @@ const {
   createTask,
   getTask,
   deleteTask,
-  updateTask,
   getAllTasks,
   updateTaskPartially
 } = require('./task-service');
 
 app.post('/tasks', (req, res) => {
-  const { title } = req.body;
+  const { id, title, completed } = req.body;
   try {
-    createTask(title);
-    res.status(201).send('created');
+    const createNewTask = createTask(data, { id, title, completed });
+    res.status(201).json(createNewTask);
   } catch (error) {
     res.status(400).send(error);
   }
@@ -36,12 +37,10 @@ app.post('/tasks', (req, res) => {
 app.put('/tasks/:id', (req, res) => {
   const id = Number(req.params.id);
 
-  const { title } = req.body;
-
-  const { completed } = req.body;
+  const { title, completed } = req.body;
   try {
-    updateTask(id, title, completed);
-    res.status(200).send('updated');
+    const updatedTaskList = updateTask(data, { id, title, completed });
+    res.status(200).json(updatedTaskList);
   } catch (error) {
     res.status(400).send(error);
   }

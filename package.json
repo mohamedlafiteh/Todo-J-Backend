@@ -6,6 +6,7 @@
   "scripts": {
     "lint": "eslint ./**.js",
     "test": "jest",
+    "test-watch": "jest --watch",
     "start": "node app.js",
     "dev": "nodemon app.js"
   },
