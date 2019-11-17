@@ -1,8 +1,8 @@
 const express = require('express');
-const app = express();
-
 const bodyParser = require('body-parser');
 const cors = require('cors');
+
+const app = express();
 
 app.use(cors());
 app.use(bodyParser.json());
@@ -10,6 +10,7 @@ app.use(bodyParser.json());
 const PORT = 3005;
 
 app.listen(PORT, () => {
+  // eslint-disable-next-line no-console
   console.log(`This server running on port ${PORT}`);
 });
 
@@ -23,7 +24,7 @@ const {
 } = require('./task-service');
 
 app.post('/tasks', (req, res) => {
-  const title = req.body.title;
+  const { title } = req.body;
   try {
     createTask(title);
     res.status(201).send('created');
@@ -35,8 +36,9 @@ app.post('/tasks', (req, res) => {
 app.put('/tasks/:id', (req, res) => {
   const id = Number(req.params.id);
 
-  const title = req.body.title;
-  const completed = req.body.completed;
+  const { title } = req.body;
+
+  const { completed } = req.body;
   try {
     updateTask(id, title, completed);
     res.status(200).send('updated');
@@ -47,8 +49,8 @@ app.put('/tasks/:id', (req, res) => {
 
 app.patch('/tasks/:id', (req, res) => {
   const id = Number(req.params.id);
-  const title = req.body.title;
-  const completed = req.body.completed;
+  const { title } = req.body;
+  const { completed } = req.body;
 
   try {
     updateTaskPartially(id, title, completed);

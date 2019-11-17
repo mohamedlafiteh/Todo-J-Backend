@@ -4,6 +4,7 @@
   "description": "Todo",
   "main": "index.js",
   "scripts": {
+    "lint": "eslint ./**.js",
     "test": "jest",
     "start": "node app.js",
     "dev": "nodemon app.js"
@@ -18,8 +19,9 @@
     "express": "^4.17.1"
   },
   "devDependencies": {
-    "eslint": "^6.1.0",
+    "eslint": "^6.6.0",
     "eslint-config-airbnb": "^18.0.1",
+    "eslint-config-airbnb-base": "^14.0.0",
     "eslint-config-prettier": "^6.5.0",
     "eslint-plugin-import": "^2.18.2",
     "eslint-plugin-jsx-a11y": "^6.2.3",
