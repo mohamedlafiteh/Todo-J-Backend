@@ -1,6 +1,6 @@
 const data = require('./data');
 
-const createTask = (title) => {
+const createTask = title => {
   if (!!title && title.length > 0) {
     const newTask = { id: data.length + 1, title, completed: false };
     data.push(newTask);
@@ -15,11 +15,11 @@ const updateTask = (id, title, completed) => {
   const updated = {
     id,
     title,
-    completed,
+    completed
   };
 
-  if (typeof updated.title !== 'undefined' && typeof (updated.completed == 'boolean')) {
-    const taskIndex = data.findIndex((d) => d.id == updated.id);
+  if (typeof updated.title !== 'undefined' && typeof (updated.completed === 'boolean')) {
+    const taskIndex = data.findIndex(d => d.id == updated.id);
 
     if (taskIndex >= 0) {
       data.splice(taskIndex, 1, { ...data[taskIndex], ...updated });
@@ -29,9 +29,9 @@ const updateTask = (id, title, completed) => {
   }
 };
 
-const deleteTask = (id) => {
+const deleteTask = id => {
   if (id !== 'undefined') {
-    const task = data.findIndex((data) => data.id == id);
+    const task = data.findIndex(data => data.id == id);
 
     data.splice(task, 1);
   } else {
@@ -39,17 +39,17 @@ const deleteTask = (id) => {
   }
 };
 
-const getTask = (id) => data.find((data) => data.id == id);
+const getTask = id => data.find(data => data.id == id);
 
 const updateTaskPartially = (id, title, completed) => {
   const updated = {
     id,
     title,
-    completed,
+    completed
   };
 
   if (id > 0) {
-    const taskIndex = data.findIndex((data) => data.id == id);
+    const taskIndex = data.findIndex(data => data.id == id);
 
     data[taskIndex] = { ...data[taskIndex], ...updated };
   } else {
@@ -63,5 +63,5 @@ module.exports = {
   deleteTask,
   updateTask,
   getAllTasks,
-  updateTaskPartially,
+  updateTaskPartially
 };

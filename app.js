@@ -10,6 +10,7 @@ app.use(bodyParser.json());
 const PORT = 3005;
 
 app.listen(PORT, () => {
+  // eslint-disable-next-line no-console
   console.log(`This server running on port ${PORT}`);
 });
 
@@ -19,7 +20,7 @@ const {
   deleteTask,
   updateTask,
   getAllTasks,
-  updateTaskPartially,
+  updateTaskPartially
 } = require('./task-service');
 
 app.post('/tasks', (req, res) => {
