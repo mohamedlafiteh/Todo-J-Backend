@@ -25,7 +25,7 @@ app.post('/tasks', (req, res) => {
   const { id, title, completed } = req.body;
   try {
     createTask(data, { id, title, completed });
-    res.status(201).send('updated');
+    res.status(201).send('created');
   } catch (error) {
     res.status(400).send(error);
   }
