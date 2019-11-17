@@ -4,7 +4,7 @@ const {
   deleteTask,
   updateTask,
   getAllTasks,
-  updateTaskPartially
+  updateTaskPartially,
 } = require('./task-service');
 
 const data = require('./data');
@@ -16,7 +16,7 @@ describe('Task service', () => {
     expect(data[2]).toEqual({
       id: 3,
       title: 'new task title',
-      completed: false
+      completed: false,
     });
   });
 });
@@ -27,7 +27,7 @@ describe('Task service', () => {
     expect(data[0]).toEqual({
       id: 1,
       title: 'update title',
-      completed: false
+      completed: false,
     });
   });
 });
@@ -38,7 +38,7 @@ describe('Task service', () => {
     expect(data[0]).toEqual({
       id: 1,
       title: 'update only title',
-      completed: false
+      completed: false,
     });
   });
 });
