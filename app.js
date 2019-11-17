@@ -7,6 +7,7 @@ const createTask = require('./src/createTask/createTask');
 const deleteTask = require('./src/deleteTask/deleteTask');
 const getTasks = require('./src/getTasks/getTasks');
 const getTaskById = require('./src/getTaskById/getTaskById');
+const updateTaskPartially = require('./src/updateTaskPartially/updateTaskPartially');
 
 const app = express();
 
@@ -20,13 +21,11 @@ app.listen(PORT, () => {
   console.log(`This server running on port ${PORT}`);
 });
 
-const { updateTaskPartially } = require('./task-service');
-
 app.post('/tasks', (req, res) => {
   const { id, title, completed } = req.body;
   try {
-    const createNewTask = createTask(data, { id, title, completed });
-    res.status(201).json(createNewTask);
+    createTask(data, { id, title, completed });
+    res.status(201).send('updated');
   } catch (error) {
     res.status(400).send(error);
   }
@@ -46,12 +45,11 @@ app.put('/tasks/:id', (req, res) => {
 
 app.patch('/tasks/:id', (req, res) => {
   const id = Number(req.params.id);
-  const { title } = req.body;
-  const { completed } = req.body;
+  const { title, completed } = req.body;
 
   try {
-    updateTaskPartially(id, title, completed);
-    res.status(200).send('Task updated');
+    const updatedTask = updateTaskPartially(data, { id, title, completed });
+    res.status(200).json(updatedTask);
   } catch (error) {
     res.status(400).send(error);
   }
