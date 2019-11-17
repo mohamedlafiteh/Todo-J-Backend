@@ -6,6 +6,7 @@ const updateTask = require('./src/updateTask/updateTask');
 const createTask = require('./src/createTask/createTask');
 const deleteTask = require('./src/deleteTask/deleteTask');
 const getTasks = require('./src/getTasks/getTasks');
+const getTaskById = require('./src/getTaskById/getTaskById');
 
 const app = express();
 
@@ -19,7 +20,7 @@ app.listen(PORT, () => {
   console.log(`This server running on port ${PORT}`);
 });
 
-const { getTask, updateTaskPartially } = require('./task-service');
+const { updateTaskPartially } = require('./task-service');
 
 app.post('/tasks', (req, res) => {
   const { id, title, completed } = req.body;
@@ -68,11 +69,11 @@ app.delete('/tasks/:id', (req, res) => {
   }
 });
 app.get('/tasks/:id', (req, res) => {
-  const id = Number(req.params.id);
+  const taskId = Number(req.params.id);
   try {
-    const task = getTask(id);
+    const task = getTaskById(data, { id: taskId });
 
-    res.status(200).send(task);
+    res.status(200).json(task);
   } catch (error) {
     res.status(400).send(error);
   }
