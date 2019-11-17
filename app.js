@@ -3,6 +3,7 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const data = require('./data');
 const updateTask = require('./src/updateTask/updateTask');
+const createTask = require('./src/createTask/createTask');
 
 const app = express();
 
@@ -16,13 +17,7 @@ app.listen(PORT, () => {
   console.log(`This server running on port ${PORT}`);
 });
 
-const {
-  createTask,
-  getTask,
-  deleteTask,
-  getAllTasks,
-  updateTaskPartially
-} = require('./task-service');
+const { getTask, deleteTask, getAllTasks, updateTaskPartially } = require('./task-service');
 
 app.post('/tasks', (req, res) => {
   const { id, title, completed } = req.body;
