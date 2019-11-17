@@ -4,6 +4,7 @@ const cors = require('cors');
 const data = require('./data');
 const updateTask = require('./src/updateTask/updateTask');
 const createTask = require('./src/createTask/createTask');
+const deleteTask = require('./src/deleteTask/deleteTask');
 
 const app = express();
 
@@ -17,7 +18,7 @@ app.listen(PORT, () => {
   console.log(`This server running on port ${PORT}`);
 });
 
-const { getTask, deleteTask, getAllTasks, updateTaskPartially } = require('./task-service');
+const { getTask, getAllTasks, updateTaskPartially } = require('./task-service');
 
 app.post('/tasks', (req, res) => {
   const { id, title, completed } = req.body;
@@ -55,11 +56,12 @@ app.patch('/tasks/:id', (req, res) => {
 });
 
 app.delete('/tasks/:id', (req, res) => {
-  const id = Number(req.params.id);
+  const taskId = Number(req.params.id);
 
   try {
-    deleteTask(id);
-    res.status(204).send();
+    const deleteTaskById = deleteTask(data, { id: taskId });
+
+    res.status(204).json(deleteTaskById);
   } catch (error) {
     res.status(400).send(error);
   }
