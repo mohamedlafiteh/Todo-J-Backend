@@ -19,13 +19,8 @@
 "statusCode": 200,
 "body": "\"Hello world!\""
 }
-Request ID:
-"864746d2-159a-4a7f-b904-5b77969ce521"
-Function Logs:
-START RequestId: 864746d2-159a-4a7f-b904-5b77969ce521 Version: \$LATEST
-END RequestId: 864746d2-159a-4a7f-b904-5b77969ce521
 
-REPORT RequestId: 864746d2-159a-4a7f-b904-5b77969ce521 Duration: 9.31 ms Billed Duration: 100 ms Memory Size: 128 MB Max Memory Used: 75 MB Init Duration: 162.99 ms.```
+REPORT Duration: 9.31 ms Billed Duration: 100 ms Memory Size: 128 MB Max Memory Used: 75 MB Init Duration: 162.99 ms.```
 
 **Because the duration was 9.31 ms, and the function does not depend on the input it safe to cap execution duration to 1 s instead of the default 3s
 I did testing running the function many times and checked the results of the duration time, to make a decision about the right time that should be used to execute the function, limit the time that function could go on so we don't pay more than we should.**
