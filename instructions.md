@@ -1,10 +1,5 @@
 # Part-1
 
-> Requirements :-
-
-- [x] Create a lambda function in nodejs, that echoes the text "HelloWorld"
-- [x] Create an APIGateway via the console using the attached petstore swagger definition in the email.
-
 # Task-1
 
 # The steps I followed :-
@@ -58,25 +53,6 @@ I did testing running the function many times and checked the results of the dur
 ---
 
 # Part -2
-
-> Language Requirements :-
-
-- [x] NodeJS (express or any framework you like)
-- [x] Tests in Jest
-- [x] ESLint - airbnb style guide
-
-> Project requirements :-
-
-- [x] All your code must be your own
-- [x] Your project will be hosted on Github
-- [x] You will plan the project on Github Project Boards
-- [x] Write a short page of requirements for the project.
-- [x] Write each resource / endpoint as a feature, document these features on your project board
-- [x] Create a branch for each feature, create a pull request / merge for each branch.
-- [x] Consider writing each test cases ( or a group of test cases ) as a card on your project board.
-- [x] You do not have to use a database - using json objects or files is acceptable.
-
----
 
 # The steps I followed :-
 
